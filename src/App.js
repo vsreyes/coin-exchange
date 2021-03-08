@@ -1,6 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Coin from './components/Coin/Coin';
 
 function App() {
   return (
