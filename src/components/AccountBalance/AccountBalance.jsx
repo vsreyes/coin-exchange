@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './AccountBalance';
+import styled from 'styled-components'
+
+const Section = styled.section`
+  border: 1px solid red;
+`;
 
 export default class AccountBalance extends Component {
   render() {
