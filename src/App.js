@@ -1,10 +1,10 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Coin from './components/Coin/Coin';
+import CoinList from './components/CoinList/CoinList';
 import AccountBalance from './components/AccountBalance/AccountBalance';
 
-class App extends React.Component() {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,6 +30,11 @@ class App extends React.Component() {
           ticker: 'XRP',
           price: 0.2,
         },
+        {
+          name: 'Bitcoin Cash',
+          ticker: 'BCH',
+          price: 298.99,
+        },
       ],
     };
   }
@@ -42,37 +47,7 @@ class App extends React.Component() {
           <h1 className='App-title'>Coin Exchange</h1>
         </header>
         <AccountBalance amount={this.state.balance} />
-        <table className='coin-table'>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Ticker</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            <Coin
-              name={this.state.coinData[0].name}
-              ticker={this.state.coinData[0].ticker}
-              price={this.state.coinData[0].price}
-            />
-            <Coin
-              name={this.state.coinData[1].name}
-              ticker={this.state.coinData[1].ticker}
-              price={this.state.coinData[1].price}
-            />
-            <Coin
-              name={this.state.coinData[2].name}
-              ticker={this.state.coinData[2].ticker}
-              price={this.state.coinData[2].price}
-            />
-            <Coin
-              name={this.state.coinData[3].name}
-              ticker={this.state.coinData[3].ticker}
-              price={this.state.coinData[3].price}
-            />
-          </tbody>
-        </table>
+        <CoinList coinData={this.state.coinData} />
       </div>
     );
   }
