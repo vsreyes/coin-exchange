@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import styled from 'styled-components';
 
-const img = styled.img`
+const Img = styled.img`
   height: 8rem;
   pointer-events: none;
 `;
