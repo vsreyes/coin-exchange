@@ -43,8 +43,9 @@ class App extends React.Component {
         },
       ],
     };
+    this.handleRefresh = this.handleRefresh.bind(this);
   }
-
+  handleRefresh() {}
   render() {
     return (
       <Div className='App'>
