@@ -10,11 +10,8 @@ const Td = styled.td`
 export default class Coin extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      price: this.props.price
-    }
-    this.handleClick = this.handleClick.bind(this);
   }
+  /*
  handleClick(event) {
     // Prevent the default action of submitting the form
     event.preventDefault();
@@ -26,6 +23,7 @@ export default class Coin extends Component {
       };
     });
  }
+ */
   render() {
     return(
       <tr>
@@ -34,7 +32,7 @@ export default class Coin extends Component {
         <Td>${this.state.price}</Td>
         <Td>
           <form action="#" method="POST">
-          <button onClick={this.handleClick}>Refresh</button>
+          <button onClick={this.props.handleRefresh}>Refresh</button>
           </form>
         </Td>
       </tr>
