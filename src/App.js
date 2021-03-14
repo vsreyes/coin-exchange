@@ -46,7 +46,7 @@ class App extends React.Component {
     this.handleRefresh = this.handleRefresh.bind(this);
   }
   handleRefresh(valueChangeTicker) {
-    const newCoins = this.state.coinData.map(function ({
+    const newCoinData = this.state.coinData.map(function ({
       ticker,
       name,
       price,
@@ -63,13 +63,13 @@ class App extends React.Component {
       };
     });
 
-    this.state({ coinData: newCoinData });
+    this.setState({ coinData: newCoinData });
   }
   render() {
     return (
       <Div className='App'>
         <ExchangeHeader />
-        <AccountBalance amount={this.state.balance} />
+        <AccountBalance amount={this.state.balance} showBalance={true} />
         <CoinList
           coinData={this.state.coinData}
           handleRefresh={this.handleRefresh}
