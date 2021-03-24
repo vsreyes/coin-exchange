@@ -5,6 +5,11 @@ import ExchangeHeader from './components/ExchangeHeader/ExchangeHeader';
 import styled from 'styled-components';
 import axios from 'axios';
 
+// import 'bootstrap/dist/css/boostrap.min.css';
+import 'bootswatch/dist/flatly/bootstrap.min.css';
+
+import '@fortawesome/fontawesome-free/js/all';
+
 const Div = styled.div`
   text-align: center;
   background-color: rgb(20, 56, 97);
@@ -16,35 +21,33 @@ const formatPrice = price => parseFloat(Number(price).toFixed(4));
 
 function App(props) {
   const [balance, setBalance] = useState(10000);
-  const [showBalance, setShowBalance] = useState(true);
+  const [showBalance, setShowBalance] = useState(false);
   const [coinData, setCoinData] = useState([]);
 
-  const response = await axios.get('https://api.coinpaprika.com/v1/coins');
-      const coinIds = response.data.slice(0, COIN_COUNT).map(coin => coin.id);
-      const tickerUrl = 'https://api.coinpaprika.com/v1/tickers/';
-      const promises = coinIds.map(id => axios.get(tickerUrl + id));
-      const coinData = await Promise.all(promises);
-      const coinPriceData = coinData.map(function (response) {
-        const coin = response.data;
-        return {
-          key: coin.id,
-          name: coin.name,
-          ticker: coin.symbol,
-          balance: 0,
-          price: formatPrice(coin.quotes.USD.price),
+  const componentDidMount = async () => {
+    const response = await axios.get('https://api.coinpaprika.com/v1/coins');
+    const coinIds = response.data.slice(0, COIN_COUNT).map(coin => coin.id);
+    const tickerUrl = 'https://api.coinpaprika.com/v1/tickers/';
+    const promises = coinIds.map(id => axios.get(tickerUrl + id));
+    const coinData = await Promise.all(promises);
+    const coinPriceData = coinData.map(function (response) {
+      const coin = response.data;
+      return {
+        key: coin.id,
+        name: coin.name,
+        ticker: coin.symbol,
+        balance: 0,
+        price: formatPrice(coin.quotes.USD.price),
       };
     });
     setCoinData(coinPriceData);
-
-  useEffect(function() {
-    if (coinData, length === 0) {
-      componentDidMount();
-    } 
-  });
-
-  const componentDidMount = async () => {
-    
   };
+
+  useEffect(function () {
+    if (coinData.length === 0) {
+      componentDidMount();
+    }
+  });
 
   const handleBalanceVisibilityChange = () => {
     setShowBalance(oldValue => !oldValue);
